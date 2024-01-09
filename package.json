@@ -1,7 +1,6 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -17,7 +16,10 @@
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@unocss/nuxt": "^0.58.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.0.0",
     "juejin-markdown-themes": "^1.34.0",
+    "lint-staged": "^15.2.0",
     "nuxt": "^3.9.0",
     "nuxt-lodash": "^2.5.3",
     "sass": "^1.69.7",
@@ -26,5 +28,10 @@
   },
   "dependencies": {
     "dayjs": "^1.11.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }
