@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { compareDesc, parseISO } from 'date-fns'
 import { allPosts, Post } from 'contentplayer/generated'
+import { format } from '@/utils/format';
 
 export default function Blogs() {
     const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
@@ -26,7 +27,7 @@ function PostCard(post: Post) {
             <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
                 {format(parseISO(post.date), 'LLLL d, yyyy')}
             </time>
-            <div className="text-sm text-ellipsis line-clamp-2" >{post.body.raw}</div>
+            <div className="text-sm text-slate-500 text-ellipsis line-clamp-2" >{post.description}</div>
         </article>
     )
 }

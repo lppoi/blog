@@ -1,4 +1,5 @@
-import { format, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
+import { format } from "@/utils/format";
 import { allPosts } from 'contentplayer/generated'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
@@ -17,9 +18,15 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
         <article className="prose max-w-none mx-auto rounded-md p-8 bg-slate-100">
             <div>
                 <h1 className="text-3xl font-bold">{post.title}</h1>
-                <time dateTime={post.date} className="mb-1 text-xs text-gray-600">
-                    {format(parseISO(post.date), 'LLLL d, yyyy')}
-                </time>
+                <div className="flex gap-4 items-center">
+                    <time dateTime={post.date} className="text-xs text-gray-600">
+                        {format(parseISO(post.date), 'LLLL d, yyyy')}
+                    </time>
+                    <small>
+                        该篇共{post.readingTime.words}字，需阅读大约{post.readingTime.minutes}分钟
+                    </small>
+                </div>
+
             </div>
             <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
         </article>
