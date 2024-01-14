@@ -23,7 +23,7 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
                         {format(parseISO(post.date), 'LLLL d, yyyy')}
                     </time>
                     <small>
-                        该篇共{post.readingTime.words}字，需阅读大约{post.readingTime.minutes}分钟
+                        该篇共{post.readingTime.words}字，需阅读大约{parseInt(post.readingTime.minutes)}分钟
                     </small>
                 </div>
 

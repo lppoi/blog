@@ -5,8 +5,6 @@ import { format } from '@/utils/format';
 
 export default function Blogs() {
     const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
-    console.log(posts);
-
     return (
         <div className="prose">
             {posts.map((post) => (
