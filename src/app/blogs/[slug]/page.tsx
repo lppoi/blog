@@ -1,6 +1,7 @@
 import { parseISO } from "date-fns";
-import { format } from "@/utils/format";
 import { allPosts } from 'contentplayer/generated'
+import { format } from "@/utils/format";
+import MDXRender from "@/components/MdxRender";
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
@@ -19,6 +20,9 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
             <div>
                 <h1 className="text-3xl font-bold">{post.title}</h1>
                 <div className="flex gap-4 items-center">
+                    <small>
+                        {post.tags?.map((tag, index) => <span key={index}>{tag}</span>)}
+                    </small>
                     <time dateTime={post.date} className="text-xs text-gray-600">
                         {format(parseISO(post.date), 'LLLL d, yyyy')}
                     </time>
@@ -28,7 +32,8 @@ const BlogLayout = ({ params }: { params: { slug: string } }) => {
                 </div>
 
             </div>
-            <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
+            <MDXRender code={post.body.code} />
+
         </article>
     )
 }
