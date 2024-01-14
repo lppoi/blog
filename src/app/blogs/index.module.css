@@ -1,0 +1,18 @@
+.blog__title {
+    position: relative;
+}
+
+.blog__title::before {
+    content: '';
+    height: 2px;
+    background: black;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    transition: width 0.5s;
+}
+
+.blog__title:hover::before {
+    width: 100%;
+}
